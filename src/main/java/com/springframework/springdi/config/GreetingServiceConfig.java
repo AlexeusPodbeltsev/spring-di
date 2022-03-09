@@ -1,10 +1,10 @@
 package com.springframework.springdi.config;
 
-import com.springframework.springdi.services.ConstructorGreetingService;
-import com.springframework.springdi.services.PropertyInjectedGreetingService;
-import com.springframework.springdi.services.SetterInjectedGreetingService;
+import com.springframework.springdi.services.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
 public class GreetingServiceConfig {
@@ -13,14 +13,32 @@ public class GreetingServiceConfig {
     ConstructorGreetingService constructorGreetingService() {
         return new ConstructorGreetingService();
     }
+
     @Bean
-    PropertyInjectedGreetingService propertyInjectedGreetingService(){
+    PropertyInjectedGreetingService propertyInjectedGreetingService() {
         return new PropertyInjectedGreetingService();
     }
 
     @Bean
-    SetterInjectedGreetingService setterInjectedGreetingService(){
+    SetterInjectedGreetingService setterInjectedGreetingService() {
         return new SetterInjectedGreetingService();
     }
 
+    @Primary
+    @Bean
+    PrimaryGreetingService primaryGreetingService() {
+        return new PrimaryGreetingService();
+    }
+
+    @Profile("EN")
+    @Bean
+    I18nEnglishGreetingService i18nService() {
+        return new I18nEnglishGreetingService();
+    }
+
+    @Profile({"ES", "default"})
+    @Bean("i18nService")
+    I18nSpanishGreetingService i18nSpanishGreetingService() {
+        return new I18nSpanishGreetingService();
+    }
 }
