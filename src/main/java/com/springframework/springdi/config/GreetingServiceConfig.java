@@ -5,11 +5,9 @@ import com.springframework.springdi.repositories.EnglishGreetingRepositoryImpl;
 import com.springframework.springdi.services.*;
 import guru.springframework.pets.PetService;
 import guru.springframework.pets.PetServiceFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.*;
 
+@ImportResource("classpath:springdi.xml")
 @Configuration
 public class GreetingServiceConfig {
 
@@ -30,10 +28,6 @@ public class GreetingServiceConfig {
        return petServiceFactory.getPetService("cat");
     }
 
-    @Bean
-    ConstructorGreetingService constructorGreetingService() {
-        return new ConstructorGreetingService();
-    }
 
     @Bean
     PropertyInjectedGreetingService propertyInjectedGreetingService() {
