@@ -1,6 +1,7 @@
 package com.springframework.springdi;
 
 import com.springframework.springdi.config.SpringDiConfiguration;
+import com.springframework.springdi.config.SpringDiConstructorConfig;
 import com.springframework.springdi.controller.*;
 import com.springframework.springdi.datasource.FakeDataSource;
 import com.springframework.springdi.services.PrototypeBean;
@@ -69,6 +70,12 @@ public class SpringDiApplication {
         System.out.println(diConfiguration.getUsername());
         System.out.println(diConfiguration.getPassword());
         System.out.println(diConfiguration.getJdbcURL());
+
+        System.out.println("---------- Constructor Binding -----------");
+        SpringDiConstructorConfig springDiConstructorConfig = ctx.getBean(SpringDiConstructorConfig.class);
+        System.out.println(springDiConstructorConfig.getUsername());
+        System.out.println(springDiConstructorConfig.getPassword());
+        System.out.println(springDiConstructorConfig.getJdbcURL());
     }
 
 }
