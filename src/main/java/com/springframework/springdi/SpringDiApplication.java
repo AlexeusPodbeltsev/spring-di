@@ -1,6 +1,7 @@
 package com.springframework.springdi;
 
 import com.springframework.springdi.controller.*;
+import com.springframework.springdi.datasource.FakeDataSource;
 import com.springframework.springdi.services.PrototypeBean;
 import com.springframework.springdi.services.SingletonBean;
 import org.springframework.boot.SpringApplication;
@@ -54,6 +55,11 @@ public class SpringDiApplication {
         System.out.println(prototypeBean1.getMyScope());
         PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
         System.out.println(prototypeBean2.getMyScope());
+
+        FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
+        System.out.println(fakeDataSource.getUsername());
+        System.out.println(fakeDataSource.getPassword());
+        System.out.println(fakeDataSource.getJdbcURL());
 
 
     }
